@@ -1,0 +1,40 @@
+import React from 'react';
+import {Row, Col, Form, Input} from 'antd'
+import {Link} from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { userRegister} from "../redux/actions/userActions"
+function Register() {
+    const dispatch= useDispatch()
+    function onFinish(values){
+        dispatch(userRegister(values))
+        console.log(values)
+    }
+    return (
+        <div className='login'>
+            <Row gutter={16} className="d-flex align-items-center">
+                <Col lg={4}></Col>
+                <Col lg={16} className="text-left">
+                    <Form layout='vertical' className='login-form p-5' onFinish={onFinish}>
+                        <h1> Login</h1>
+                        <hr/>
+                        <Form.Item name='username' label='Username' rules={[{required: true}]}>
+                            <Input/>
+                        </Form.Item>
+                        <Form.Item name='password' label='Password' rules={[{required: true}]}>
+                            <Input/>
+                        </Form.Item>
+                        <Form.Item name='cpassword' label='Confirm Password' rules={[{required: true}]}>
+                            <Input/>
+                        </Form.Item>
+
+                        <button className='btn1 mt-2 mb-3'>Register</button>
+                        <br></br>
+                        <Link to='/Login'>Click Here To Login</Link>
+                    </Form>
+                </Col>
+            </Row>
+        </div>
+    )
+}
+
+export default Register;
